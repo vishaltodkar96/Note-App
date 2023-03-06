@@ -35,7 +35,7 @@ function App() {
 
         event.preventDefault();
 
-        axios.post("http://localhost:3001/api/insert", { note_title: note.title, note_content: note.content, }).then(() => {
+        axios.post("http://baatcheet.online/api/insert", { note_title: note.title, note_content: note.content, }).then(() => {
             setNotes([...notes, { note_title: note.title, note_content: note.content, }])
         })
 
@@ -48,7 +48,7 @@ function App() {
     }
 
     function deleteNotes(id) {
-        axios.delete(`http://localhost:3001/api/delete/${id}`).then((response) =>{
+        axios.delete(`http://baatcheet.online/api/delete/${id}`).then((response) =>{
             setNotes(notes.filter((val) =>{
                 return val.id !== id;
             }))
@@ -57,7 +57,7 @@ function App() {
 
     useEffect(() => {
 
-        axios.get("http://localhost:3001/api/get").then((response) => {
+        axios.get("http://baatcheet.online/api/get").then((response) => {
             setNotes(response.data)
         })
     }, [notes])

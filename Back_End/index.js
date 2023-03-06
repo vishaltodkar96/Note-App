@@ -3,15 +3,16 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const mysql = require("mysql");
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
 
 const db = mysql.createPool({
-    user: "root",
-    host: "localhost",
-    password: "Vishal@123",
-    database: "NoteDataBase",
+    user: process.env.USER,
+    host: process.env.HOST,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
 })
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -51,6 +52,6 @@ app.delete("/api/delete/:id", (req, res) => {
     });
   });
 
-app.listen(3001, () => {
-    console.log("server is running on port 3001");
+app.listen(process.env.PORT, () => {
+    console.log("server is running on port: ",process.env.PORT);
 });
